@@ -8,26 +8,20 @@ This is done using the HSA GraphicsConsole so that you don't have to learn Java 
 I'm making "commits" in Git/GitHub for each major improvement. 
 Please start at the first one, and go through them so that you understand what is happening.
 
-##2. Making a ball move. Making it bounce off the edges of the screen
+##3. Adding a paddle, moving it, collisions
 
-* The ball is a separate object (with a separate class Ball.java). This is because the ball has properties that it should maintain
-and that we want to change. We can also create multiple balls this way.
-* Notice some new global variables: lives, isPlaying (this will be used to end the game)
-* Notice some constants. These make it easy to change numbers in the code without having to do search and replace.
-* A **game loop** has been added. This is a standard way of doing things. 
-* The sleep() function is ESSENTIAL. This allows the computer to do other things. It also varies the speed of the game
-  * ball.xspeed and ball.yspeed are how many pixels the ball moves each time. If this number is larger, the ball moves faster. 
-  However, it also becomes more jerky because it actually jumps this number of pixels.
-  * So, keep the xspeed small, and vary the game speed by changing SLEEPTIME. It is in milliseconds
-* Interesting, both a capital or lowercase Q will end the game.
+* Font: fixed up
+* Ball bouncing off screen fixed. You need to figure out why this was happening and why the fix worked.
+* Ball starting location: meh... I'm not going to bother doing that.
 
-  ---
- 
- Okay, I've also made it so that when the ball hits the bottom of the screen, you lose a life and the ball changes colour.
- 
- ##Next time:
- 
- :one: I'm going to make a nicer font in the next release so that the text looks better.
- :two: Notice how the ball actually goes off the screen on the right and bottom. This needs fixing.
- :three: Let's draw a rectangle to make sure that the ball actually starts in the place that we want it to.
- 
+### Paddle
+
+The simplest way to see if things collide:boom: is if they are both rectangles. Notice that the Ball still has its own class, but the paddle doesn't.
+They are both rectangles, but the paddle doesn't have any special properties, whereas the ball does. Furthermore, we're never having more than one paddle.
+If we were, it would be most convenient if we made the paddle in to a class.
+
+Read the comments about the initialize() method in the code.
+You can also use GitHub to look at the differences between the commits to see what has changed.
+
+Paddle is set up to move by using the mouse or using the keyboard. Just uncomment whichever method you want to use.
+Note that the keyboard moving still needs a bit of fixing up: you can move the paddle off of the right side of the screen!
