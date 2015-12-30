@@ -8,20 +8,11 @@ This is done using the HSA GraphicsConsole so that you don't have to learn Java 
 I'm making "commits" in Git/GitHub for each major improvement. 
 Please start at the first one, and go through them so that you understand what is happening.
 
-##3. Adding a paddle, moving it, collisions
+##4. Paddle collision
 
-* Font: fixed up
-* Ball bouncing off screen fixed. You need to figure out why this was happening and why the fix worked.
-* Ball starting location: meh... I'm not going to bother doing that.
+Well, that was easy! Just use the Rectangle.intersects() method.
 
-### Paddle
-
-The simplest way to see if things collide:boom: is if they are both rectangles. Notice that the Ball still has its own class, but the paddle doesn't.
-They are both rectangles, but the paddle doesn't have any special properties, whereas the ball does. Furthermore, we're never having more than one paddle.
-If we were, it would be most convenient if we made the paddle in to a class.
-
-Read the comments about the initialize() method in the code.
-You can also use GitHub to look at the differences between the commits to see what has changed.
-
-Paddle is set up to move by using the mouse or using the keyboard. Just uncomment whichever method you want to use.
-Note that the keyboard moving still needs a bit of fixing up: you can move the paddle off of the right side of the screen!
+Note that this does not really do collisions properly. 
+* The ball is treated as a rectangle, so the corners of the rectangle are quite far from the circle denoting the ball. I've drawn a square around the ball so you can see how this works.
+* There is no complex bouncing coded. For example, if you hit the ball at the ends of the paddle it should bounce differently from if you hit it 
+with the middle of the paddle. I may try and code this just for fun. 

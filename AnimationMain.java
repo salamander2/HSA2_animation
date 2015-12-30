@@ -47,8 +47,7 @@ public class AnimationMain {
 	}
 
 	/****** Methods for game *******/
-	/**
-	 * These are things that are only done once. 
+	/* These are things that are only done once. 
 	 * They should not be done over and over in a loop as they will either slow the program down or screw it up.
 	 * Putting all of the initialization in a separate method is useful because then it is really easy to restart the game.
 	 */
@@ -64,10 +63,9 @@ public class AnimationMain {
 		lives = 4;
 		isPlaying = true;
 		
-		//set up objects
-		//set paddle x and y here (or could be in the Rectangle constructor above)
-		paddle.x = GRWIDTH/2; 	//or paddle.x = gc.getDrawWidth()/2;
-		paddle.y = GRHEIGHT - 80;
+		//set up objects		
+		paddle.x = GRWIDTH/2;
+		paddle.y = GRHEIGHT - 100;
 		ball.resetXY(); // This is totally unnecessary unless you restart and need to reset the ball position and speed.
 		
 		gc.sleep(500); // allow a bit of time for the user to move the mouse to the correct position in the game screen
@@ -103,8 +101,13 @@ public class AnimationMain {
 			ball.xspeed *=-1;
 		}
 		
-	}
-	
+		//check if ball hits paddle
+		if (ball.intersects(paddle)) {
+			if (ball.yspeed > 0 ) {			//the ball must be moving downwards, not upwards
+					ball.yspeed *=-1;
+			}
+		}		
+	}	
 
 	void movePaddle_mouse(){
 		paddle.x = gc.getMouseX() - paddle.width/2;
@@ -112,12 +115,14 @@ public class AnimationMain {
 	
 	void movePaddle_keys(){
 		int moveAmount = 7;
+		//37 and 39 are the keyboard codes for the left and right arrow keys.
 		if (gc.getKeyCode() == 37) paddle.x -= moveAmount;
 		if (gc.getKeyCode() == 39) paddle.x += moveAmount;
 		
 		//check to prevent moving the paddle off the screen
 		if (paddle.x < 0) paddle.x = 0;
 		//now you need to figure out how to to the same for the right side of the screen (I did the easy one!)
+		//...
 	}
 	
 	void drawGraphics() {
@@ -129,8 +134,12 @@ public class AnimationMain {
 			gc.drawString("LIVES = " + lives, 30, 70);
 			gc.setColor(ball.colour);
 			gc.fillOval(ball.x, ball.y, ball.width, ball.height);
+			//DEBUG
+			gc.setColor(Color.WHITE);
+			gc.drawRect(ball.x, ball.y, ball.width, ball.height);
+			//END DEBUG
 			gc.setColor(PADDLECOLOUR);
-			gc.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+			gc.fillRoundRect(paddle.x, paddle.y, paddle.width, paddle.height, 10,10);
 		}
 	}
 }

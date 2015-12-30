@@ -18,7 +18,7 @@ public class Ball extends Rectangle
 	
 	/**
 	 * The ball will be placed randomly within the rectangle specified by the parameters below.
-	 * The ball will be at least 75 pixels from the edge of this rectangle.
+	 * The ball will be at least 75 pixels from the edge of this rectangle. (errr... only if maxX and maxY are > 150)
 	 * @param maxX The range of X values for the ball to be placed
 	 * @param maxY The range of Y values for the ball to be placed
 	 */
@@ -36,6 +36,7 @@ public class Ball extends Rectangle
 	void resetXY() {
 		x = (int)(Math.random() * (n1 - 150))+75;
 		y = (int)(Math.random() * (n2 - 150))+75;
-		xspeed = yspeed = 3;		
+		xspeed = yspeed = 3;
+		width=height=diameter;
 	}
 }
