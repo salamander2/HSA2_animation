@@ -10,7 +10,7 @@ public class Ball extends Rectangle
 	//do not put superclass variables here
 	int xspeed = 3;	
 	int yspeed = 3;
-	int diameter = 40;
+	int diameter = 30;
 	Color colour = Color.RED;
 	//int x,y,width,height;  <<< This line MUST now be deleted. Rectangles come with their own copy of these 4 variables, so don't recreate them.
 	
